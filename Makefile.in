@@ -26,19 +26,19 @@ REAL_NAME = libjsonparser.$(SO_EXT).@PACKAGE_VERSION@
 all: libjsonparser.a libjsonparser.$(SO_EXT)
 
 libjsonparser.a: $(OBJS)
-	$(AR) rcs libjsonparser.a json.o
+	$(AR) rcs libjsonparser.a json.o json_ex.o
 
 libjsonparser.so: $(OBJS)
 	$(CC) -shared -Wl,-soname,$(SO_NAME) -o libjsonparser.so $^
 
 libjsonparser.dylib: $(OBJS)
-	$(CC) -dynamiclib json.o -o libjsonparser.dylib
+	$(CC) -dynamiclib json.o json_ex.o -o libjsonparser.dylib
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^
 
 clean:
-	rm -f libjsonparser.$(SO_EXT) libjsonparser.a json.o
+	rm -f libjsonparser.$(SO_EXT) libjsonparser.a json.o json_ex.o
 
 install-shared: libjsonparser.$(SO_EXT)
 	@echo Installing pkgconfig module: $(datadir)/pkgconfig/json-parser.pc

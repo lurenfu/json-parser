@@ -8,6 +8,33 @@ Very low footprint JSON parser written in portable ANSI C.
 
 _Want to serialize?  Check out [json-builder](https://github.com/udp/json-builder)!_
 
+
+JSON extend by lurenfu@qq.com
+-----------------------------
+
+Add json_ex.h and json_ex.c to json-parser, add some useful api to create json or format json string.
+
+    json_value* json_read_file(char*);
+
+    json_value* json_create_object(void);
+    json_value* json_create_array(void);
+
+    json_value* json_add_object(json_value *jv, char *name);
+    json_value* json_add_array(json_value *jv, char *name);
+
+    int json_add_integer(json_value *jv, char *name, json_int_t v);
+    int json_add_double(json_value *jv, char *name, double v);
+    int json_add_string(json_value *jv, char *name, const char *v);
+    int json_add_boolean(json_value *jv, char *name, int v);
+    int json_add_null(json_value *jv, char *name);
+
+    int json_get_output_string_length(const json_value *jv);
+    int json_output_string(const json_value *jv, char *buf);
+
+    int     json_get_format_string_length(const char *text);
+    char*   json_format_string(const char *text, char *outbuf, size_t size);
+
+
 Installing
 ----------
 
